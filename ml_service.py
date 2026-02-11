@@ -8,6 +8,14 @@ model = joblib.load("pcos_random_forest_model.pkl")
 
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "message": "SheCare ML API is running",
+        "status": "healthy",
+        "use_endpoint": "/predict (POST request)"
+    })
+
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
